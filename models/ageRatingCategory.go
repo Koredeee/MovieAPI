@@ -10,6 +10,10 @@ type (
 		Description string    `json:"description"`
 		CreatedAt   time.Time `json:"created_at"`
 		UpdatedAt   time.Time `json:"updated_at"`
-		Movies      []Movie   `json:"-"`
+
+		//Ngebuka listnya
+		// untuk menunjukkan adanya relasi
+		// agar si migrator tidak bingung bahwa AgeRatingCategory have relationship with Movies
+		Movies []Movie `json:"-"`
 	}
 )
