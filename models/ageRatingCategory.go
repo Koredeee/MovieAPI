@@ -1,14 +1,15 @@
 package models
 
-import (
-	"gorm.io/gorm"
-)
+import "time"
 
 type (
 	AgeRatingCategory struct {
-		gorm.Model
-		Name        string  `json:"name"`
-		Description string  `json:"description"`
-		Movies      []Movie `json:"-"`
+		// gorm.Model
+		ID          int       `gorm:"primary_key" json:"id"`
+		Name        string    `json:"name"`
+		Description string    `json:"description"`
+		CreatedAt   time.Time `json:"created_at"`
+		UpdatedAt   time.Time `json:"updated_at"`
+		Movies      []Movie   `json:"-"`
 	}
 )
