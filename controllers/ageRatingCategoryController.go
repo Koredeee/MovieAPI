@@ -78,7 +78,7 @@ func GetRatingById(c *gin.Context) {
 
 	// mengecek hasil db. harus masukkin parameter id juga
 	// First -> mengeluarkan data pertama
-	if err := db.Where("age_rating_category_id = ?", c.Param("id")).First(&rating).Error; err != nil {
+	if err := db.Where("id = ?", c.Param("id")).First(&rating).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found"})
 		return
 	}
@@ -128,7 +128,7 @@ func UpdateRating(c *gin.Context) {
 
 	// get rating if exist
 	var rating models.AgeRatingCategory
-	if err := db.Where("age_rating_category_id = ?", c.Param("id")).First(&rating).Error; err != nil {
+	if err := db.Where("id = ?", c.Param("id")).First(&rating).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found"})
 		return
 	}
@@ -174,7 +174,7 @@ func DeleteRating(c *gin.Context) {
 
 	// mengecek hasil db. harus masukkin parameter id juga
 	// First -> mengeluarkan data pertama
-	if err := db.Where("age_rating_category_id = ?", c.Param("id")).First(&rating).Error; err != nil {
+	if err := db.Where("id = ?", c.Param("id")).First(&rating).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found"})
 		return
 	}

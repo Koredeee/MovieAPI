@@ -25,6 +25,12 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	r.PATCH("/age-rating-categories/:id", controllers.UpdateRating)
 	r.DELETE("/age-rating-categories/:id", controllers.DeleteRating)
 
+	r.GET("/movies", controllers.GetAllMovie)
+	r.POST("/movies", controllers.CreateMovie)
+	r.GET("/movies/:id", controllers.GetMovieById)
+	r.PATCH("/movies/:id", controllers.UpdateMovie)
+	r.DELETE("/movies/:id", controllers.DeleteMovie)
+
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r

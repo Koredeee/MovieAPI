@@ -6,6 +6,15 @@ definitions:
       name:
         type: string
     type: object
+  controllers.MovieInput:
+    properties:
+      age_rating_category_id:
+        type: integer
+      title:
+        type: string
+      year:
+        type: integer
+    type: object
   models.AgeRatingCategory:
     properties:
       created_at:
@@ -164,4 +173,101 @@ paths:
       summary: Get movies by Age Rating Category by id
       tags:
       - AgeRatingCategory
+  /movies:
+    get:
+      description: Get List of Movie
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Movie'
+            type: array
+      summary: Get All Movie
+      tags:
+      - Movie
+    post:
+      description: Create new Movie
+      parameters:
+      - description: the body to create new Movie
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.MovieInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Create Movie
+      tags:
+      - Movie
+  /movies/{id}:
+    delete:
+      description: Delete one Movie by Id
+      parameters:
+      - description: Movie Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      summary: Delete an Movie by Id
+      tags:
+      - Movie
+    get:
+      description: Get one Movie by Id
+      parameters:
+      - description: Movie Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Get an Movie by Id
+      tags:
+      - Movie
+    patch:
+      description: Update one Movie by Id
+      parameters:
+      - description: Movie Id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to create new Movie
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.MovieInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Update an Movie by Id
+      tags:
+      - Movie
 swagger: "2.0"
